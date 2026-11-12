@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>お問い合わせ | わくパル</title>
+<meta name="description" content="わくパル（WakuPals）へのお問い合わせ">
+<meta name="theme-color" content="#eef8f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#172022" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #f6fbfb;
+  --surface: #ffffff;
+  --ink: #3a4149;
+  --ink-soft: #6a737c;
+  --line: #e3ecee;
+  --primary: #83ccd2;
+  --primary-ink: #3e8a92;
+  --primary-soft: #eef8f9;
+  --accent: #f5e29e;
+  --accent-soft: #fdf8e4;
+  --pink-soft: #fdeef3;
+  --pink-ink: #c0587e;
+  --btn-bg: #2f3a40;
+  --btn-ink: #ffffff;
+  --shadow: 0 10px 30px rgba(62, 138, 146, 0.12);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #172022;
+    --surface: #212b2d;
+    --ink: #e7eef0;
+    --ink-soft: #a9b5b9;
+    --line: #33403f;
+    --primary: #5fb3b0;
+    --primary-ink: #8fd8d1;
+    --primary-soft: #223235;
+    --accent: #d9c57c;
+    --accent-soft: #2d2a1f;
+    --pink-soft: #33242b;
+    --pink-ink: #f0a3bf;
+    --btn-bg: #e7eef0;
+    --btn-ink: #172022;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  line-height: 1.8;
+  -webkit-text-size-adjust: 100%;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--primary-ink); overflow-wrap: anywhere; }
+.ic { width: 20px; height: 20px; flex-shrink: 0; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+.narrow { max-width: 720px; }
+
+/* ── ヘッダー ── */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+}
+.topbar .wrap { display: flex; align-items: center; gap: 12px; height: 60px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 800; font-size: 17px; }
+.brand img { width: 34px; height: 34px; border-radius: 9px; }
+.topbar nav { margin-left: auto; display: flex; gap: 4px; }
+.topbar nav a { color: var(--ink-soft); text-decoration: none; font-size: 14px; font-weight: 600; padding: 6px 10px; border-radius: 10px; white-space: nowrap; }
+.topbar nav a:hover { background: var(--primary-soft); color: var(--primary-ink); }
+@media (max-width: 560px) { .topbar nav a.opt { display: none; } }
+
+/* ── ボタン ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 22px; border-radius: 999px;
+  font-weight: 700; font-size: 15px; text-decoration: none; line-height: 1.2;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-dark { background: var(--btn-bg); color: var(--btn-ink); box-shadow: var(--shadow); }
+.btn-soft { background: var(--primary-soft); color: var(--primary-ink); border: 1px solid var(--primary); }
+.btn small { display: block; font-size: 11px; font-weight: 600; opacity: .8; }
+
+/* ── ヒーロー ── */
+.hero {
+  background:
+    radial-gradient(60% 70% at 85% 20%, var(--pink-soft), transparent 70%),
+    radial-gradient(50% 60% at 10% 90%, var(--accent-soft), transparent 70%),
+    linear-gradient(180deg, var(--primary-soft), var(--bg));
+  overflow: hidden;
+}
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 24px; padding-top: 56px; padding-bottom: 56px; }
+.eyebrow { display: inline-block; font-size: 13px; font-weight: 700; color: var(--pink-ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; margin: 0 0 16px; }
+.hero h1 { font-size: clamp(30px, 5.4vw, 48px); line-height: 1.3; margin: 0 0 16px; letter-spacing: .01em; }
+.hero h1 em { font-style: normal; background: linear-gradient(transparent 62%, var(--accent) 62%); }
+@media (prefers-color-scheme: dark) { .hero h1 em { background: linear-gradient(transparent 66%, rgba(217, 197, 124, 0.38) 66%); } }
+.hero p.lead { font-size: 16px; color: var(--ink-soft); margin: 0 0 28px; max-width: 30em; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+.chips li { font-size: 13px; color: var(--ink-soft); background: color-mix(in srgb, var(--surface) 75%, transparent); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; }
+.hero-art { position: relative; }
+.hero-art img { width: 100%; max-width: 440px; margin: 0 auto; filter: drop-shadow(0 18px 30px rgba(62, 138, 146, .18)); }
+@media (max-width: 760px) {
+  .hero .wrap { grid-template-columns: 1fr; text-align: center; padding-top: 36px; padding-bottom: 40px; }
+  .hero p.lead { margin-left: auto; margin-right: auto; }
+  .cta, .chips { justify-content: center; }
+  .hero-art { order: -1; }
+  .hero-art img { max-width: 220px; }
+}
+
+/* ── セクション ── */
+section.block { padding: 64px 0; }
+section.block.alt { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.head { text-align: center; margin-bottom: 32px; }
+.head .kicker { font-size: 13px; font-weight: 700; letter-spacing: .12em; color: var(--primary-ink); margin: 0 0 4px; }
+.head h2 { font-size: clamp(22px, 3.6vw, 30px); margin: 0; line-height: 1.4; }
+.head p { color: var(--ink-soft); margin: 8px 0 0; font-size: 15px; }
+
+/* スクショ */
+.shots {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding: 4px 16px 20px; margin: 0 -16px;
+  scrollbar-width: thin;
+}
+.shots figure { margin: 0; flex: 0 0 210px; scroll-snap-align: center; }
+.shots img { width: 210px; height: auto; aspect-ratio: 560 / 1217; border-radius: 22px; box-shadow: var(--shadow); background: var(--primary-soft); }
+.shots figcaption { text-align: center; font-size: 13px; color: var(--ink-soft); margin-top: 10px; }
+@media (min-width: 1000px) { .shots { justify-content: center; flex-wrap: nowrap; } .shots figure { flex-basis: 130px; } .shots img { width: 130px; } }
+
+/* 特長 */
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 860px) { .features { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
+.feature { background: var(--bg); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
+.feature .badge { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--primary-soft); color: var(--primary-ink); margin-bottom: 12px; }
+.feature:nth-child(3n+2) .badge { background: var(--pink-soft); color: var(--pink-ink); }
+.feature:nth-child(3n) .badge { background: var(--accent-soft); color: #9a7f22; }
+@media (prefers-color-scheme: dark) { .feature:nth-child(3n) .badge { color: var(--accent); } }
+.feature h3 { font-size: 16px; margin: 0 0 4px; }
+.feature p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+/* よくある質問 */
+.faq { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 4px 20px; }
+.faq details { border-top: 1px solid var(--line); }
+.faq details:first-child { border-top: 0; }
+.faq summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 16px 0; font-weight: 700; font-size: 15px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .ic { margin-left: auto; color: var(--ink-soft); transition: transform .2s ease; }
+.faq details[open] summary .ic { transform: rotate(180deg); }
+.faq details p { margin: 0 0 16px; font-size: 14px; color: var(--ink-soft); }
+
+/* お問い合わせへの案内 */
+.help { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px; box-shadow: var(--shadow); }
+.help > div { flex: 1 1 280px; }
+.help h2 { margin: 0 0 4px; font-size: 20px; }
+.help p { margin: 0; color: var(--ink-soft); font-size: 14px; }
+
+/* 文書ページ */
+.doc { padding: 32px 0 16px; }
+.back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; text-decoration: none; margin-bottom: 16px; }
+.back .ic { width: 16px; height: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; margin-bottom: 16px; }
+.card h1 { font-size: 24px; margin: 0 0 8px; line-height: 1.4; }
+.card h2 { font-size: 18px; margin: 0 0 8px; }
+.card h3 { font-size: 16px; margin: 28px 0 6px; padding-top: 20px; border-top: 1px solid var(--line); }
+.card p, .card li { font-size: 15px; color: var(--ink-soft); }
+.card p { margin: 6px 0; }
+.card p.lead { color: var(--ink); }
+.card p.sub { color: var(--ink); font-weight: 700; }
+.card ul { margin: 6px 0; padding-left: 1.3em; }
+.meta { font-size: 13px; color: var(--ink-soft); margin: 0 0 16px; }
+.steps { counter-reset: s; list-style: none; padding: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 12px; align-items: baseline; margin: 8px 0; }
+.steps li::before { content: counter(s); flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--primary-soft); color: var(--primary-ink); font-size: 13px; font-weight: 700; }
+.mailbox { margin-top: 16px; padding: 18px; border-radius: 16px; background: var(--primary-soft); text-align: center; }
+.mailbox .btn { margin-top: 4px; }
+.mailbox .addr { display: block; margin-top: 10px; font-size: 14px; color: var(--ink-soft); user-select: all; }
+
+/* フッター */
+footer.site { padding: 40px 0 48px; text-align: center; font-size: 13px; color: var(--ink-soft); }
+footer.site nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin-bottom: 10px; }
+footer.site a { color: var(--ink-soft); text-decoration: none; }
+footer.site a:hover { color: var(--primary-ink); }
+footer.site p { margin: 0; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="icon.png" alt="" width="34" height="34">わくパル</a>
+    <nav aria-label="メニュー">
+      
+      <a class="opt" href="index.html#faq">よくある質問</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+<main>
+<div class="wrap narrow doc">
+<a class="back" href="index.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>トップへ</a>
+<article class="card">
+<h1>お問い合わせ</h1>
+<p class="lead">ご意見・ご要望や不具合のご報告をお待ちしています。お送りいただく前に、<a href="index.html#faq">よくある質問</a>もご覧ください。</p>
+
+<h3>アプリから送る</h3>
+<ol class="steps">
+  <li>わくパルの「設定」を開く</li>
+  <li>「お問い合わせ」から内容を書いて送る</li>
+</ol>
+
+<h3>メールで送る</h3>
+<p>不具合の場合は、お使いの端末の機種と iOS のバージョン、どの画面で何をしたときに起きたかを書き添えていただけると調べやすくなります。</p>
+<div class="mailbox">
+  <a class="btn btn-dark" href="mailto:yfam.252525@gmail.com?subject=%E3%82%8F%E3%81%8F%E3%83%91%E3%83%AB%E3%81%B8%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>メールを書く</a>
+  <span class="addr">yfam.252525@gmail.com</span>
+</div>
+<p class="meta" style="margin-top:16px">お返事までお時間をいただくことがあります。</p>
+</article>
+</div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <nav aria-label="サイト">
+      <a href="index.html">トップ</a>
+      <a href="contact.html">お問い合わせ</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
+      <a href="https://apps.apple.com/jp/app/id6815889210" rel="noopener">App Store</a>
+    </nav>
+    <p>&copy; 2026 WakuPals</p>
+  </div>
+</footer>
+</body>
+</html>

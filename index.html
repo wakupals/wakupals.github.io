@@ -3,13 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>わくパル（WakuPals）サポート</title>
-<meta name="description" content="わくパル（WakuPals）のサポートページ。よくある質問とお問い合わせ先。">
+<title>わくパル（WakuPals）｜どうぶつと一緒に、こつこつ集中</title>
+<meta name="description" content="ほのぼのした動物の「パル」といっしょに、勉強や仕事の時間を過ごすフォーカスタイマー。よくある質問とお問い合わせ。">
+<meta name="theme-color" content="#eef8f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#172022" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="canonical" href="https://wakupals.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="わくパル">
+<meta property="og:title" content="わくパル（WakuPals）｜どうぶつと一緒に、こつこつ集中">
+<meta property="og:description" content="ほのぼのした動物の「パル」といっしょに、勉強や仕事の時間を過ごすフォーカスタイマー。よくある質問とお問い合わせ。">
+<meta property="og:url" content="https://wakupals.github.io/">
+<meta property="og:image" content="https://wakupals.github.io/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="apple-itunes-app" content="app-id=6815889210">
 <style>
 :root {
   color-scheme: light dark;
-  --bg: #f2f9f9;
+  --bg: #f6fbfb;
   --surface: #ffffff;
   --ink: #3a4149;
   --ink-soft: #6a737c;
@@ -17,22 +29,35 @@
   --primary: #83ccd2;
   --primary-ink: #3e8a92;
   --primary-soft: #eef8f9;
+  --accent: #f5e29e;
   --accent-soft: #fdf8e4;
+  --pink-soft: #fdeef3;
+  --pink-ink: #c0587e;
+  --btn-bg: #2f3a40;
+  --btn-ink: #ffffff;
+  --shadow: 0 10px 30px rgba(62, 138, 146, 0.12);
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a2022;
-    --surface: #232b2d;
+    --bg: #172022;
+    --surface: #212b2d;
     --ink: #e7eef0;
     --ink-soft: #a9b5b9;
-    --line: #34403f;
+    --line: #33403f;
     --primary: #5fb3b0;
-    --primary-ink: #7fd3cc;
-    --primary-soft: #243235;
+    --primary-ink: #8fd8d1;
+    --primary-soft: #223235;
+    --accent: #d9c57c;
     --accent-soft: #2d2a1f;
+    --pink-soft: #33242b;
+    --pink-ink: #f0a3bf;
+    --btn-bg: #e7eef0;
+    --btn-ink: #172022;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   }
 }
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--bg);
@@ -41,83 +66,244 @@ body {
   line-height: 1.8;
   -webkit-text-size-adjust: 100%;
 }
-.wrap { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+img { max-width: 100%; height: auto; display: block; }
 a { color: var(--primary-ink); overflow-wrap: anywhere; }
-header.app { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
-header.app img { width: 72px; height: 72px; border-radius: 18px; flex-shrink: 0; }
-header.app h1 { margin: 0; font-size: 26px; line-height: 1.3; }
-header.app p { margin: 2px 0 0; color: var(--ink-soft); font-size: 14px; }
-.card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 16px;
+.ic { width: 20px; height: 20px; flex-shrink: 0; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+.narrow { max-width: 720px; }
+
+/* ── ヘッダー ── */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
 }
-h2 { font-size: 18px; margin: 0 0 8px; }
-h3 { font-size: 16px; margin: 24px 0 6px; }
-p, li { font-size: 15px; color: var(--ink-soft); }
-p { margin: 6px 0; }
-p.lead { color: var(--ink); }
-p.sub { color: var(--ink); font-weight: 700; }
-ul { margin: 6px 0; padding-left: 1.3em; }
+.topbar .wrap { display: flex; align-items: center; gap: 12px; height: 60px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 800; font-size: 17px; }
+.brand img { width: 34px; height: 34px; border-radius: 9px; }
+.topbar nav { margin-left: auto; display: flex; gap: 4px; }
+.topbar nav a { color: var(--ink-soft); text-decoration: none; font-size: 14px; font-weight: 600; padding: 6px 10px; border-radius: 10px; white-space: nowrap; }
+.topbar nav a:hover { background: var(--primary-soft); color: var(--primary-ink); }
+@media (max-width: 560px) { .topbar nav a.opt { display: none; } }
+
+/* ── ボタン ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 22px; border-radius: 999px;
+  font-weight: 700; font-size: 15px; text-decoration: none; line-height: 1.2;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-dark { background: var(--btn-bg); color: var(--btn-ink); box-shadow: var(--shadow); }
+.btn-soft { background: var(--primary-soft); color: var(--primary-ink); border: 1px solid var(--primary); }
+.btn small { display: block; font-size: 11px; font-weight: 600; opacity: .8; }
+
+/* ── ヒーロー ── */
+.hero {
+  background:
+    radial-gradient(60% 70% at 85% 20%, var(--pink-soft), transparent 70%),
+    radial-gradient(50% 60% at 10% 90%, var(--accent-soft), transparent 70%),
+    linear-gradient(180deg, var(--primary-soft), var(--bg));
+  overflow: hidden;
+}
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 24px; padding-top: 56px; padding-bottom: 56px; }
+.eyebrow { display: inline-block; font-size: 13px; font-weight: 700; color: var(--pink-ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; margin: 0 0 16px; }
+.hero h1 { font-size: clamp(30px, 5.4vw, 48px); line-height: 1.3; margin: 0 0 16px; letter-spacing: .01em; }
+.hero h1 em { font-style: normal; background: linear-gradient(transparent 62%, var(--accent) 62%); }
+@media (prefers-color-scheme: dark) { .hero h1 em { background: linear-gradient(transparent 66%, rgba(217, 197, 124, 0.38) 66%); } }
+.hero p.lead { font-size: 16px; color: var(--ink-soft); margin: 0 0 28px; max-width: 30em; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+.chips li { font-size: 13px; color: var(--ink-soft); background: color-mix(in srgb, var(--surface) 75%, transparent); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; }
+.hero-art { position: relative; }
+.hero-art img { width: 100%; max-width: 440px; margin: 0 auto; filter: drop-shadow(0 18px 30px rgba(62, 138, 146, .18)); }
+@media (max-width: 760px) {
+  .hero .wrap { grid-template-columns: 1fr; text-align: center; padding-top: 36px; padding-bottom: 40px; }
+  .hero p.lead { margin-left: auto; margin-right: auto; }
+  .cta, .chips { justify-content: center; }
+  .hero-art { order: -1; }
+  .hero-art img { max-width: 220px; }
+}
+
+/* ── セクション ── */
+section.block { padding: 64px 0; }
+section.block.alt { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.head { text-align: center; margin-bottom: 32px; }
+.head .kicker { font-size: 13px; font-weight: 700; letter-spacing: .12em; color: var(--primary-ink); margin: 0 0 4px; }
+.head h2 { font-size: clamp(22px, 3.6vw, 30px); margin: 0; line-height: 1.4; }
+.head p { color: var(--ink-soft); margin: 8px 0 0; font-size: 15px; }
+
+/* スクショ */
+.shots {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding: 4px 16px 20px; margin: 0 -16px;
+  scrollbar-width: thin;
+}
+.shots figure { margin: 0; flex: 0 0 210px; scroll-snap-align: center; }
+.shots img { width: 210px; height: auto; aspect-ratio: 560 / 1217; border-radius: 22px; box-shadow: var(--shadow); background: var(--primary-soft); }
+.shots figcaption { text-align: center; font-size: 13px; color: var(--ink-soft); margin-top: 10px; }
+@media (min-width: 1000px) { .shots { justify-content: center; flex-wrap: nowrap; } .shots figure { flex-basis: 130px; } .shots img { width: 130px; } }
+
+/* 特長 */
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 860px) { .features { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
+.feature { background: var(--bg); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
+.feature .badge { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--primary-soft); color: var(--primary-ink); margin-bottom: 12px; }
+.feature:nth-child(3n+2) .badge { background: var(--pink-soft); color: var(--pink-ink); }
+.feature:nth-child(3n) .badge { background: var(--accent-soft); color: #9a7f22; }
+@media (prefers-color-scheme: dark) { .feature:nth-child(3n) .badge { color: var(--accent); } }
+.feature h3 { font-size: 16px; margin: 0 0 4px; }
+.feature p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+/* よくある質問 */
+.faq { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 4px 20px; }
+.faq details { border-top: 1px solid var(--line); }
+.faq details:first-child { border-top: 0; }
+.faq summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 16px 0; font-weight: 700; font-size: 15px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .ic { margin-left: auto; color: var(--ink-soft); transition: transform .2s ease; }
+.faq details[open] summary .ic { transform: rotate(180deg); }
+.faq details p { margin: 0 0 16px; font-size: 14px; color: var(--ink-soft); }
+
+/* お問い合わせへの案内 */
+.help { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px; box-shadow: var(--shadow); }
+.help > div { flex: 1 1 280px; }
+.help h2 { margin: 0 0 4px; font-size: 20px; }
+.help p { margin: 0; color: var(--ink-soft); font-size: 14px; }
+
+/* 文書ページ */
+.doc { padding: 32px 0 16px; }
+.back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; text-decoration: none; margin-bottom: 16px; }
+.back .ic { width: 16px; height: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; margin-bottom: 16px; }
+.card h1 { font-size: 24px; margin: 0 0 8px; line-height: 1.4; }
+.card h2 { font-size: 18px; margin: 0 0 8px; }
+.card h3 { font-size: 16px; margin: 28px 0 6px; padding-top: 20px; border-top: 1px solid var(--line); }
+.card p, .card li { font-size: 15px; color: var(--ink-soft); }
+.card p { margin: 6px 0; }
+.card p.lead { color: var(--ink); }
+.card p.sub { color: var(--ink); font-weight: 700; }
+.card ul { margin: 6px 0; padding-left: 1.3em; }
 .meta { font-size: 13px; color: var(--ink-soft); margin: 0 0 16px; }
-details { border-top: 1px solid var(--line); padding: 12px 0; }
-details:first-of-type { border-top: 0; padding-top: 4px; }
-summary { cursor: pointer; font-weight: 700; color: var(--ink); font-size: 15px; }
-details p { margin-top: 8px; }
-.mail {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 10px 18px;
-  border-radius: 14px;
-  background: var(--primary-soft);
-  border: 1px solid var(--primary);
-  font-weight: 700;
-  text-decoration: none;
-}
-nav.back { margin-bottom: 20px; font-size: 14px; }
-footer { margin-top: 32px; font-size: 13px; color: var(--ink-soft); text-align: center; }
-footer a { margin: 0 8px; }
+.steps { counter-reset: s; list-style: none; padding: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 12px; align-items: baseline; margin: 8px 0; }
+.steps li::before { content: counter(s); flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--primary-soft); color: var(--primary-ink); font-size: 13px; font-weight: 700; }
+.mailbox { margin-top: 16px; padding: 18px; border-radius: 16px; background: var(--primary-soft); text-align: center; }
+.mailbox .btn { margin-top: 4px; }
+.mailbox .addr { display: block; margin-top: 10px; font-size: 14px; color: var(--ink-soft); user-select: all; }
+
+/* フッター */
+footer.site { padding: 40px 0 48px; text-align: center; font-size: 13px; color: var(--ink-soft); }
+footer.site nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin-bottom: 10px; }
+footer.site a { color: var(--ink-soft); text-decoration: none; }
+footer.site a:hover { color: var(--primary-ink); }
+footer.site p { margin: 0; }
 </style>
 </head>
 <body>
-<div class="wrap">
-<header class="app">
-  <img src="icon.png" alt="">
-  <div>
-    <h1>わくパル</h1>
-    <p>WakuPals ─ がんばる時間に、ちいさな仲間を。</p>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="icon.png" alt="" width="34" height="34">わくパル</a>
+    <nav aria-label="メニュー">
+      <a class="opt" href="#features">特長</a>
+      <a class="opt" href="index.html#faq">よくある質問</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
   </div>
 </header>
-
-<section class="card">
-  <h2>わくパルについて</h2>
-  <p class="lead">ほのぼのした動物の「パル」といっしょに、勉強や仕事の時間を過ごすフォーカスタイマーです。こつこつ続けるほど、仲間や場所が増えていきます。</p>
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">どうぶつと一緒の集中タイマー</p>
+      <h1>パルといっしょに、<br><em>こつこつ集中</em></h1>
+      <p class="lead">ほのぼのした動物の「パル」が、となりで一緒にがんばるフォーカスタイマー。勉強や仕事の時間が、ちょっとたのしみになります。</p>
+      <div class="cta"><a class="btn btn-dark" href="https://apps.apple.com/jp/app/id6815889210" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg><span>App Store でダウンロード<small>無料（アプリ内課金あり）</small></span></a></div>
+      <ul class="chips"><li>iPhone</li><li>iPad</li><li>Mac</li><li>えらべる相棒 12匹</li></ul>
+    </div>
+    <div class="hero-art"><img src="img/pals.webp" alt="わくパルのどうぶつたち" width="720" height="720"></div>
+  </div>
 </section>
 
-<section class="card">
-  <h2>よくある質問</h2>
-  <details><summary>アカウントの登録は必要ですか？</summary><p>必要ありません。アプリを入れたらすぐに使えます。初めて開いたとき、アカウントの登録・ログイン（メールアドレスとパスワード、または Apple）をするか、登録せずに使うかを選べます。登録しなくても今までどおり使えます（その場合は、端末ごとの匿名のアカウントが自動で作られます）。登録しておくと、データを残して機種変更で引き継げます。</p></details>
-  <details><summary>データはどこに保存されますか？</summary><p>こつこつの記録、メモ、写真、設定などは、お使いの端末の中にだけ保存されます。ダイヤの残高、購入の記録、解放したアイテムは、運営者のサーバーでも管理しています（詳しくはプライバシーポリシーをご覧ください）。アカウントの登録・ログインをした場合は、端末のデータ（写真を除く）もサーバーに保存します。ログインしていないと、アプリを削除したときに端末のデータは消え、購入したダイヤも引き継げません。</p></details>
-  <details><summary>ダイヤは購入できますか？</summary><p>はい。ホーム画面・記録画面・アイテム画面の右上のダイヤの数をタップするか、アイテムの解放の確認画面にある買い物アイコン（ダイヤが足りないときは「ダイヤを買う」ボタン）から、App Store のアプリ内課金でダイヤを購入できます。購入しなくても、こつこつして貯められます。返金は Apple の定めに従います。</p></details>
-  <details><summary>機種変更のときにデータを引き継げますか？</summary><p>アプリの「設定」→「データの保存」でログインしておくと、新しい端末で同じアカウントでログインすれば、こつこつの記録もダイヤも引き継げます（記念写真は引き継げません）。ログインせずに使っている場合は引き継げません。</p></details>
-  <details><summary>広告は表示されますか？</summary><p>「広告を見て」のボタンを押したときだけ、動画広告が流れます。最後まで見ると、追加でダイヤがもらえます。広告を見なくても、すべての機能を使えます。</p></details>
-  <details><summary>音が鳴りません。</summary><p>端末の音量と、アプリの「設定」→「効果音」がオンになっているかをご確認ください。こつこつ中の BGM は、こつこつ画面の左上から選べます。</p></details>
+<section class="block" aria-labelledby="shots-title">
+  <div class="wrap">
+    <div class="head">
+      <p class="kicker">SCREENSHOTS</p>
+      <h2 id="shots-title">アプリの画面</h2>
+    </div>
+    <div class="shots">
+      <figure><img src="img/1_kotsukotsu.webp" alt="パルといっしょに集中の画面" width="560" height="1217" loading="lazy"><figcaption>パルといっしょに集中</figcaption></figure>
+      <figure><img src="img/2_shikake.webp" alt="続けたくなるしかけの画面" width="560" height="1217" loading="lazy"><figcaption>続けたくなるしかけ</figcaption></figure>
+      <figure><img src="img/3_kyukei.webp" alt="休憩ありタイマーの画面" width="560" height="1217" loading="lazy"><figcaption>休憩ありタイマー</figcaption></figure>
+      <figure><img src="img/4_minna.webp" alt="みんなでこつこつの画面" width="560" height="1217" loading="lazy"><figcaption>みんなでこつこつ</figcaption></figure>
+      <figure><img src="img/5_kisekae.webp" alt="背景・アクセサリーの画面" width="560" height="1217" loading="lazy"><figcaption>背景・アクセサリー</figcaption></figure>
+      <figure><img src="img/6_album.webp" alt="記念写真アルバムの画面" width="560" height="1217" loading="lazy"><figcaption>記念写真アルバム</figcaption></figure>
+      <figure><img src="img/7_kiroku.webp" alt="記録とカレンダーの画面" width="560" height="1217" loading="lazy"><figcaption>記録とカレンダー</figcaption></figure>
+    </div>
+  </div>
 </section>
 
-<section class="card">
-  <h2>お問い合わせ</h2>
-  <p>ご意見・ご要望や不具合のご報告は、下記のメールアドレスまでお送りください。不具合の場合は、お使いの端末の機種と iOS のバージョンを書き添えていただけると調べやすくなります。</p>
-  <p>アプリの「設定」→「お問い合わせ」からも送れます。</p>
-  <a class="mail" href="mailto:yfam.252525@gmail.com">yfam.252525@gmail.com</a>
+<section class="block alt" id="features" aria-labelledby="features-title">
+  <div class="wrap">
+    <div class="head">
+      <p class="kicker">FEATURES</p>
+      <h2 id="features-title">わくパルでできること</h2>
+      <p>こつこつ続けるほど、仲間や場所が増えていきます。</p>
+    </div>
+    <div class="features">
+      <div class="feature"><div class="badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M10 2h4"/></svg></div><h3>パルといっしょに、こつこつ</h3><p>ポモドーロも、自由な時間も。こつこつ中は、えらんだパルがとなりで勉強や仕事をしています。</p></div>
+      <div class="feature"><div class="badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M6 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/></svg></div><h3>休憩も、パルとひと休み</h3><p>休憩ありタイマーで、集中と休憩を自動でくり返し。むりなく続けられます。</p></div>
+      <div class="feature"><div class="badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>みんなで・大切な人と</h3><p>はなれていても、同じ部屋でいっしょに集中。友だちや家族とは、招待コードで同じ部屋に入れます。</p></div>
+      <div class="feature"><div class="badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg></div><h3>背景やメガネで、きせかえ</h3><p>こつこつでためたダイヤで、お部屋の背景やアクセサリーを解放。100種類以上から選べます。</p></div>
+      <div class="feature"><div class="badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></div><h3>がんばった日は、記念写真に</h3><p>こつこつが終わるたびに、パルとの記念写真がアルバムにたまっていきます。</p></div>
+      <div class="feature"><div class="badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div><h3>こつこつが、目に見える</h3><p>グラフとカレンダーで、毎日のつみかさねをふり返り。続いた日数もひと目でわかります。</p></div>
+    </div>
+  </div>
 </section>
-<footer>
-  <a href="index.html">サポート</a>
-  <a href="privacy.html">プライバシーポリシー</a>
-  <a href="terms.html">利用規約</a>
-  <p>&copy; 2026 WakuPals</p>
+
+<section class="block" id="faq" aria-labelledby="faq-title">
+  <div class="wrap narrow">
+    <div class="head">
+      <p class="kicker">FAQ</p>
+      <h2 id="faq-title">よくある質問</h2>
+    </div>
+    <div class="faq">
+      <details><summary>アカウントの登録は必要ですか？<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>必要ありません。アプリを入れたらすぐに使えます。初めて開いたとき、アカウントの登録・ログイン（メールアドレスとパスワード、または Apple）をするか、登録せずに使うかを選べます。登録しなくても今までどおり使えます（その場合は、端末ごとの匿名のアカウントが自動で作られます）。登録しておくと、データを残して機種変更で引き継げます。</p></details>
+      <details><summary>データはどこに保存されますか？<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>こつこつの記録、メモ、写真、設定などは、お使いの端末の中にだけ保存されます。ダイヤの残高、購入の記録、解放したアイテムは、運営者のサーバーでも管理しています（詳しくはプライバシーポリシーをご覧ください）。アカウントの登録・ログインをした場合は、端末のデータ（写真を除く）もサーバーに保存します。ログインしていないと、アプリを削除したときに端末のデータは消え、購入したダイヤも引き継げません。</p></details>
+      <details><summary>ダイヤは購入できますか？<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>はい。ホーム画面・記録画面・アイテム画面の右上のダイヤの数をタップするか、アイテムの解放の確認画面にある買い物アイコン（ダイヤが足りないときは「ダイヤを買う」ボタン）から、App Store のアプリ内課金でダイヤを購入できます。購入しなくても、こつこつして貯められます。返金は Apple の定めに従います。</p></details>
+      <details><summary>機種変更のときにデータを引き継げますか？<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>アプリの「設定」→「データの保存」でログインしておくと、新しい端末で同じアカウントでログインすれば、こつこつの記録もダイヤも引き継げます（記念写真は引き継げません）。ログインせずに使っている場合は引き継げません。</p></details>
+      <details><summary>広告は表示されますか？<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>「広告を見て」のボタンを押したときだけ、動画広告が流れます。最後まで見ると、追加でダイヤがもらえます。広告を見なくても、すべての機能を使えます。</p></details>
+      <details><summary>音が鳴りません。<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>端末の音量と、アプリの「設定」→「効果音」がオンになっているかをご確認ください。こつこつ中の BGM は、こつこつ画面の左上から選べます。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap narrow">
+    <div class="help">
+      <div>
+        <h2>解決しないときは</h2>
+        <p>ご意見・ご要望や不具合のご報告は、お問い合わせページからお送りください。</p>
+      </div>
+      <a class="btn btn-soft" href="contact.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>お問い合わせ</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <nav aria-label="サイト">
+      <a href="index.html">トップ</a>
+      <a href="contact.html">お問い合わせ</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
+      <a href="https://apps.apple.com/jp/app/id6815889210" rel="noopener">App Store</a>
+    </nav>
+    <p>&copy; 2026 WakuPals</p>
+  </div>
 </footer>
-</div>
 </body>
 </html>

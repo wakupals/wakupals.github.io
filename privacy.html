@@ -5,11 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>プライバシーポリシー | わくパル</title>
 <meta name="description" content="わくパル（WakuPals）のプライバシーポリシー">
+<meta name="theme-color" content="#eef8f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#172022" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
 <style>
 :root {
   color-scheme: light dark;
-  --bg: #f2f9f9;
+  --bg: #f6fbfb;
   --surface: #ffffff;
   --ink: #3a4149;
   --ink-soft: #6a737c;
@@ -17,22 +20,35 @@
   --primary: #83ccd2;
   --primary-ink: #3e8a92;
   --primary-soft: #eef8f9;
+  --accent: #f5e29e;
   --accent-soft: #fdf8e4;
+  --pink-soft: #fdeef3;
+  --pink-ink: #c0587e;
+  --btn-bg: #2f3a40;
+  --btn-ink: #ffffff;
+  --shadow: 0 10px 30px rgba(62, 138, 146, 0.12);
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a2022;
-    --surface: #232b2d;
+    --bg: #172022;
+    --surface: #212b2d;
     --ink: #e7eef0;
     --ink-soft: #a9b5b9;
-    --line: #34403f;
+    --line: #33403f;
     --primary: #5fb3b0;
-    --primary-ink: #7fd3cc;
-    --primary-soft: #243235;
+    --primary-ink: #8fd8d1;
+    --primary-soft: #223235;
+    --accent: #d9c57c;
     --accent-soft: #2d2a1f;
+    --pink-soft: #33242b;
+    --pink-ink: #f0a3bf;
+    --btn-bg: #e7eef0;
+    --btn-ink: #172022;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   }
 }
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--bg);
@@ -41,52 +57,160 @@ body {
   line-height: 1.8;
   -webkit-text-size-adjust: 100%;
 }
-.wrap { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+img { max-width: 100%; height: auto; display: block; }
 a { color: var(--primary-ink); overflow-wrap: anywhere; }
-header.app { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
-header.app img { width: 72px; height: 72px; border-radius: 18px; flex-shrink: 0; }
-header.app h1 { margin: 0; font-size: 26px; line-height: 1.3; }
-header.app p { margin: 2px 0 0; color: var(--ink-soft); font-size: 14px; }
-.card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 16px;
+.ic { width: 20px; height: 20px; flex-shrink: 0; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+.narrow { max-width: 720px; }
+
+/* ── ヘッダー ── */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
 }
-h2 { font-size: 18px; margin: 0 0 8px; }
-h3 { font-size: 16px; margin: 24px 0 6px; }
-p, li { font-size: 15px; color: var(--ink-soft); }
-p { margin: 6px 0; }
-p.lead { color: var(--ink); }
-p.sub { color: var(--ink); font-weight: 700; }
-ul { margin: 6px 0; padding-left: 1.3em; }
+.topbar .wrap { display: flex; align-items: center; gap: 12px; height: 60px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 800; font-size: 17px; }
+.brand img { width: 34px; height: 34px; border-radius: 9px; }
+.topbar nav { margin-left: auto; display: flex; gap: 4px; }
+.topbar nav a { color: var(--ink-soft); text-decoration: none; font-size: 14px; font-weight: 600; padding: 6px 10px; border-radius: 10px; white-space: nowrap; }
+.topbar nav a:hover { background: var(--primary-soft); color: var(--primary-ink); }
+@media (max-width: 560px) { .topbar nav a.opt { display: none; } }
+
+/* ── ボタン ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 22px; border-radius: 999px;
+  font-weight: 700; font-size: 15px; text-decoration: none; line-height: 1.2;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-dark { background: var(--btn-bg); color: var(--btn-ink); box-shadow: var(--shadow); }
+.btn-soft { background: var(--primary-soft); color: var(--primary-ink); border: 1px solid var(--primary); }
+.btn small { display: block; font-size: 11px; font-weight: 600; opacity: .8; }
+
+/* ── ヒーロー ── */
+.hero {
+  background:
+    radial-gradient(60% 70% at 85% 20%, var(--pink-soft), transparent 70%),
+    radial-gradient(50% 60% at 10% 90%, var(--accent-soft), transparent 70%),
+    linear-gradient(180deg, var(--primary-soft), var(--bg));
+  overflow: hidden;
+}
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 24px; padding-top: 56px; padding-bottom: 56px; }
+.eyebrow { display: inline-block; font-size: 13px; font-weight: 700; color: var(--pink-ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; margin: 0 0 16px; }
+.hero h1 { font-size: clamp(30px, 5.4vw, 48px); line-height: 1.3; margin: 0 0 16px; letter-spacing: .01em; }
+.hero h1 em { font-style: normal; background: linear-gradient(transparent 62%, var(--accent) 62%); }
+@media (prefers-color-scheme: dark) { .hero h1 em { background: linear-gradient(transparent 66%, rgba(217, 197, 124, 0.38) 66%); } }
+.hero p.lead { font-size: 16px; color: var(--ink-soft); margin: 0 0 28px; max-width: 30em; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+.chips li { font-size: 13px; color: var(--ink-soft); background: color-mix(in srgb, var(--surface) 75%, transparent); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; }
+.hero-art { position: relative; }
+.hero-art img { width: 100%; max-width: 440px; margin: 0 auto; filter: drop-shadow(0 18px 30px rgba(62, 138, 146, .18)); }
+@media (max-width: 760px) {
+  .hero .wrap { grid-template-columns: 1fr; text-align: center; padding-top: 36px; padding-bottom: 40px; }
+  .hero p.lead { margin-left: auto; margin-right: auto; }
+  .cta, .chips { justify-content: center; }
+  .hero-art { order: -1; }
+  .hero-art img { max-width: 220px; }
+}
+
+/* ── セクション ── */
+section.block { padding: 64px 0; }
+section.block.alt { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.head { text-align: center; margin-bottom: 32px; }
+.head .kicker { font-size: 13px; font-weight: 700; letter-spacing: .12em; color: var(--primary-ink); margin: 0 0 4px; }
+.head h2 { font-size: clamp(22px, 3.6vw, 30px); margin: 0; line-height: 1.4; }
+.head p { color: var(--ink-soft); margin: 8px 0 0; font-size: 15px; }
+
+/* スクショ */
+.shots {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding: 4px 16px 20px; margin: 0 -16px;
+  scrollbar-width: thin;
+}
+.shots figure { margin: 0; flex: 0 0 210px; scroll-snap-align: center; }
+.shots img { width: 210px; height: auto; aspect-ratio: 560 / 1217; border-radius: 22px; box-shadow: var(--shadow); background: var(--primary-soft); }
+.shots figcaption { text-align: center; font-size: 13px; color: var(--ink-soft); margin-top: 10px; }
+@media (min-width: 1000px) { .shots { justify-content: center; flex-wrap: nowrap; } .shots figure { flex-basis: 130px; } .shots img { width: 130px; } }
+
+/* 特長 */
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 860px) { .features { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
+.feature { background: var(--bg); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
+.feature .badge { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--primary-soft); color: var(--primary-ink); margin-bottom: 12px; }
+.feature:nth-child(3n+2) .badge { background: var(--pink-soft); color: var(--pink-ink); }
+.feature:nth-child(3n) .badge { background: var(--accent-soft); color: #9a7f22; }
+@media (prefers-color-scheme: dark) { .feature:nth-child(3n) .badge { color: var(--accent); } }
+.feature h3 { font-size: 16px; margin: 0 0 4px; }
+.feature p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+/* よくある質問 */
+.faq { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 4px 20px; }
+.faq details { border-top: 1px solid var(--line); }
+.faq details:first-child { border-top: 0; }
+.faq summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 16px 0; font-weight: 700; font-size: 15px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .ic { margin-left: auto; color: var(--ink-soft); transition: transform .2s ease; }
+.faq details[open] summary .ic { transform: rotate(180deg); }
+.faq details p { margin: 0 0 16px; font-size: 14px; color: var(--ink-soft); }
+
+/* お問い合わせへの案内 */
+.help { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px; box-shadow: var(--shadow); }
+.help > div { flex: 1 1 280px; }
+.help h2 { margin: 0 0 4px; font-size: 20px; }
+.help p { margin: 0; color: var(--ink-soft); font-size: 14px; }
+
+/* 文書ページ */
+.doc { padding: 32px 0 16px; }
+.back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; text-decoration: none; margin-bottom: 16px; }
+.back .ic { width: 16px; height: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; margin-bottom: 16px; }
+.card h1 { font-size: 24px; margin: 0 0 8px; line-height: 1.4; }
+.card h2 { font-size: 18px; margin: 0 0 8px; }
+.card h3 { font-size: 16px; margin: 28px 0 6px; padding-top: 20px; border-top: 1px solid var(--line); }
+.card p, .card li { font-size: 15px; color: var(--ink-soft); }
+.card p { margin: 6px 0; }
+.card p.lead { color: var(--ink); }
+.card p.sub { color: var(--ink); font-weight: 700; }
+.card ul { margin: 6px 0; padding-left: 1.3em; }
 .meta { font-size: 13px; color: var(--ink-soft); margin: 0 0 16px; }
-details { border-top: 1px solid var(--line); padding: 12px 0; }
-details:first-of-type { border-top: 0; padding-top: 4px; }
-summary { cursor: pointer; font-weight: 700; color: var(--ink); font-size: 15px; }
-details p { margin-top: 8px; }
-.mail {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 10px 18px;
-  border-radius: 14px;
-  background: var(--primary-soft);
-  border: 1px solid var(--primary);
-  font-weight: 700;
-  text-decoration: none;
-}
-nav.back { margin-bottom: 20px; font-size: 14px; }
-footer { margin-top: 32px; font-size: 13px; color: var(--ink-soft); text-align: center; }
-footer a { margin: 0 8px; }
+.steps { counter-reset: s; list-style: none; padding: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 12px; align-items: baseline; margin: 8px 0; }
+.steps li::before { content: counter(s); flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--primary-soft); color: var(--primary-ink); font-size: 13px; font-weight: 700; }
+.mailbox { margin-top: 16px; padding: 18px; border-radius: 16px; background: var(--primary-soft); text-align: center; }
+.mailbox .btn { margin-top: 4px; }
+.mailbox .addr { display: block; margin-top: 10px; font-size: 14px; color: var(--ink-soft); user-select: all; }
+
+/* フッター */
+footer.site { padding: 40px 0 48px; text-align: center; font-size: 13px; color: var(--ink-soft); }
+footer.site nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin-bottom: 10px; }
+footer.site a { color: var(--ink-soft); text-decoration: none; }
+footer.site a:hover { color: var(--primary-ink); }
+footer.site p { margin: 0; }
 </style>
 </head>
 <body>
-<div class="wrap">
-<nav class="back"><a href="index.html">わくパル サポート</a></nav>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="icon.png" alt="" width="34" height="34">わくパル</a>
+    <nav aria-label="メニュー">
+      
+      <a class="opt" href="index.html#faq">よくある質問</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+<main>
+<div class="wrap narrow doc">
+<a class="back" href="index.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>トップへ</a>
 <article class="card">
-<h2>プライバシーポリシー</h2>
-<p class="meta">最終更新日：2026年10月27日</p>
+<h1>プライバシーポリシー</h1>
+<p class="meta">最終更新日：2026年11月12日</p>
 <p class="lead">わくパル（以下「本アプリ」といいます。）の運営者（以下「運営者」といいます。）は、本アプリにおけるユーザーの情報の取扱いについて、以下のとおりプライバシーポリシーを定めます。</p>
 <h3>1. 基本的な考え方</h3>
 <p>本アプリは、アカウントの登録やログインをしなくても利用できます。初めて起動したとき（アップデート後の1回目を含みます）に、アカウントの登録・ログイン（メールアドレスとパスワード、または Apple）をするか、登録せずに使うかを選ぶ画面が出ます。どちらを選んでも、端末の中のデータは消えません。ログインしない場合は、端末ごとのランダムな匿名の ID（名前・メールアドレス・Apple ID とは結び付いていません）が自動で作られます。</p>
@@ -123,11 +247,11 @@ footer a { margin: 0 8px; }
 <p>通信の状態などで送信できなかった場合は、ユーザーの端末のメールアプリから送信する方法に切り替わります。その場合は、Formspree を経由せず、送信元のメールアドレスを運営者が受け取ります。</p>
 <h3>5. みんなでこつこつ（同じ部屋の人に見える情報）</h3>
 <p>「みんなでこつこつ」は、大切な人（部屋コード）や知らない人と同じ部屋に入り、おたがいがこつこつしている様子を見られる機能です。部屋に入ったとき、部屋を出るまでのあいだだけ、次の情報を同じ部屋の人に送ります。</p>
-<ul><li>端末ごとにアプリが作るランダムな ID（個人の名前や Apple ID とは結び付いていません）</li><li>選んでいるパルの種類と、使っている背景</li><li>いまの状態（こつこつ中・休憩中・じゅんび中）と、こつこつを始めた時刻</li><li>「大切な人と」の部屋に限り、ユーザーが自分で入力した「やること」（1〜2件・各30文字まで）</li><li>「大切な人と」の部屋を招待コードを表示してつくった場合に限り、ユーザーがつけた「部屋の名前」（20文字まで）</li><li>「大切な人と」の部屋に限り、ユーザーがパルに自分でつけた名前（6文字まで。名前をつけていない場合は送りません）</li></ul>
-<p>ユーザーの名前、記録の内容、位置情報は送りません。「やること」「部屋の名前」「パルにつけた名前」は「大切な人と」の部屋でだけ同じ部屋の人に見えます（「みんなで」の部屋には送りません）。この3つ以外に、文字や写真を送りあう機能はありません。</p>
+<ul><li>端末ごとにアプリが作るランダムな ID（個人の名前や Apple ID とは結び付いていません）</li><li>選んでいるパルの種類と、使っている背景</li><li>いまの状態（こつこつ中・休憩中・じゅんび中）と、こつこつを始めた時刻</li><li>「大切な人と」の部屋に限り、ユーザーが自分で入力した「やること」（1〜2件・各30文字まで）</li><li>「大切な人と」の部屋を招待コードを表示してつくった場合に限り、ユーザーがつけた「部屋の名前」（20文字まで）</li><li>ユーザーがパルに自分でつけた名前（6文字まで。「大切な人と」「みんなで」のどちらの部屋でも送ります。名前をつけていない場合は送りません）</li></ul>
+<p>ユーザーの名前、記録の内容、位置情報は送りません。「パルにつけた名前」は、どちらの部屋でも同じ部屋の人に見えます。「やること」「部屋の名前」は「大切な人と」の部屋でだけ同じ部屋の人に見えます（「みんなで」の部屋には送りません）。この3つ以外に、文字や写真を送りあう機能はありません。</p>
 <p>この通信には、Supabase, Inc. が提供するリアルタイム通信サービス「Supabase Realtime」を利用しています。運営者は、これらの情報を保存せず（第3項のダイヤの管理用のデータとは別です）、部屋を出る（またはアプリを閉じる）と、部屋からその情報は消えます。ただし、Supabase は通信の運用のために、IP アドレスなどの接続の記録を一定期間保持することがあります。Supabase の取扱いについては、同社のプライバシーポリシー（<a href="https://supabase.com/privacy" rel="noopener">https://supabase.com/privacy</a>）をご覧ください。</p>
 <p>「みんなで」の部屋には、同じ時間にその部屋に入った不特定の人が入ります。「大切な人と」の部屋は、部屋コードを知っている人なら誰でも入れます。部屋コードは、信頼できる人にだけ伝えてください。</p>
-<p>「大切な人と」の部屋で他の人の「やること」「部屋の名前」「パルにつけた名前」がふさわしくないと感じたときは、その人のマスの「…」から、運営者に通報する（通報の内容は運営者にだけ届き、相手には伝わりません）か、その人を非表示にすることができます。非表示にした人の情報は、この端末の中にだけ保存されます。</p>
+<p>どちらの部屋でも、他の人の「パルにつけた名前」「やること」「部屋の名前」がふさわしくないと感じたときは、その人のマスの「…」から、運営者に通報する（通報の内容は運営者にだけ届き、相手には伝わりません）か、その人を非表示にすることができます。非表示にした人の情報は、この端末の中にだけ保存されます。</p>
 <p>「みんなでこつこつ」の部屋に入らなければ、上記の情報を部屋に送る通信は行われません。</p>
 <p>アプリのホーム画面では、「いま〇人」を表示するため、数秒だけ同じサービスに接続して、いまこつこつしている人数を数えます。このとき送られるのは接続に必要な情報だけで、ユーザーの状態は部屋に入っていなければ送られません。</p>
 <h3>6. 広告について</h3>
@@ -162,12 +286,19 @@ footer a { margin: 0 8px; }
 <p>本ポリシーに関するお問い合わせは、アプリ内のお問い合わせ画面、または上記のメールアドレスまでお願いいたします。</p>
 <p>運営者の氏名・住所は、お問い合わせいただければ遅滞なく回答します。</p>
 </article>
-<footer>
-  <a href="index.html">サポート</a>
-  <a href="privacy.html">プライバシーポリシー</a>
-  <a href="terms.html">利用規約</a>
-  <p>&copy; 2026 WakuPals</p>
-</footer>
 </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <nav aria-label="サイト">
+      <a href="index.html">トップ</a>
+      <a href="contact.html">お問い合わせ</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
+      <a href="https://apps.apple.com/jp/app/id6815889210" rel="noopener">App Store</a>
+    </nav>
+    <p>&copy; 2026 WakuPals</p>
+  </div>
+</footer>
 </body>
 </html>
